@@ -18,7 +18,7 @@ If the total exceeds a threshold, take action (e.g., notify or escalate).
 ```js
 var threshold = 50000;
 var total = 0;
-if (subject.Lines && subject.Lines.Count > 0) {
+if (subject.Lines.Count > 0) {
     for (let i = 0; i < subject.Lines.Count; i++) {
 	  total += line[i].LineAmount.Value;
 	}

@@ -15,7 +15,7 @@ When a new sales order is created, automatically add default sales order lines i
 **Script:**
 ```js
 // Automatically add default lines for VIP customers
-if (subject.Customer && subject.Customer.CustomerType.Id == "SPECIFIC-CUSTOMER-TYPE-ID-HERE") {
+if (subject.Customer != null && subject.Customer.CustomerType.Id == "SPECIFIC-CUSTOMER-TYPE-ID-HERE") {
     // Add a default product line
     var defaultProduct = Domain.General.Products.ProductsRepository.getById("YOUR-PRODUCT-ID-HERE");
     if (defaultProduct) {
