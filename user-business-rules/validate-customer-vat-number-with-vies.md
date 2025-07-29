@@ -19,8 +19,8 @@ If the VAT number is not valid, the operation is cancelled.
 if (subject.Customer && subject.Customer.Party && subject.Customer.Party.Country) {
     var url = "https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number";
     var body = JSON.stringify({
-        countryCode: subject.Customer.Party.Country.CountryCode,
-        vatNumber: subject.Customer.Party.PartyUniqueNumber,
+        countryCode: subject.Customer.Party.Country.Code,
+        vatNumber: subject.Customer.Party.RegistrationNumber,
         requesterMemberStateCode: "BG",
         requesterNumber: "XXXXX"
     });

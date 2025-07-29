@@ -22,7 +22,7 @@ if (subject.Customer && subject.Customer.CustomerType.Id == "SPECIFIC-CUSTOMER-T
         var newLine = Domain.Crm.Sales.SalesOrderLinesRepository.createNew();
         newLine.SalesOrder = subject;
         newLine.Product = defaultProduct;
-        newLine.Quantity = new Domain.Quantity(1, defaultProduct.MeasurementUnit);
+        newLine.Quantity = new Domain.Types.Quantity(1, defaultProduct.MeasurementUnit);
         newLine.UnitPrice = 100; // Set default price if needed
     }
 }
