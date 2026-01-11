@@ -15,8 +15,8 @@ This replaces previous logic that relied on calculated attributes and complex bu
 
 **Script:**
 ```js
-// Check if the sales order payment type is 'In Cash' (SystemType = 0)
-if (subject.PaymentType != null && subject.PaymentType.SystemType === 0) {
+// Check if the sales order payment type is 'In Cash'
+if (subject.PaymentType != null && subject.PaymentType.SystemType === 'Cash') {
     subject.CreditLimitOverride = true;
 }
 ```
