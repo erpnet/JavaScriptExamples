@@ -30,10 +30,13 @@ if (subject.Customer != null && subject.Customer.Party != null && subject.Custom
     var response = Action.http.post(url, body, headers);
 
     // Parse response (expected: { countryCode, valid, ... })
-    var viesResult = JSON.parse(response);
-
-    if (!viesResult.valid) {
-        Action.cancel("Customer VAT number is not valid according to VIES.");
+    if (response.isSuccess) {
+        var viesResult = JSON.parse(response.body);
+        if (!viesResult.valid) {
+            Action.cancel("Customer VAT number is not valid according to VIES.");
+        }
+    } else {
+        Action.error("VIES API request failed. Status: " + response.statusCode + ". Error: " + response.errorMessage);
     }
 }
 ```
