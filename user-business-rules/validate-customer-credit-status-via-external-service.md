@@ -26,9 +26,15 @@ var headers = "Authorization: Bearer YOUR_TOKEN_HERE";
 var response = Action.http.get(url, headers);
 
 // Assume the service returns a JSON object, e.g. { "status": "APPROVED" }
-var creditStatus = JSON.parse(response).status;
+if (response.isSuccess) {
+    var creditResult = JSON.parse(response.body);
+    var creditStatus = creditResult.status;
 
-if (creditStatus !== "APPROVED") {
-    Action.cancel("Customer credit status is not approved. The order cannot be committed.");
+    if (creditStatus !== "APPROVED") {
+        Action.cancel("Customer credit status is not approved. The order cannot be committed.");
+    }
+} else {
+    Action.error("Credit service error. Status: " + response.statusCode + ", Info: " + response.errorMessage);    
+    Action.cancel("Credit verification could not be completed at this time.");
 }
 ```
